@@ -13,8 +13,8 @@ productController.create = async (req, res) => {
         const existing=await Product.findOne({productId:req.body.productId})
         const body = req.body;
       if(existing){
-         existing.quantity+=body.quantity
-         existing.total=existing.total+(body.quantity*existing.prize)
+         existing.quantity= Number(existing.quantity)+body.quantity
+         existing.total=Number(existing.total)+(body.quantity*Number(existing.prize))
          await existing.save()
          return
       }
