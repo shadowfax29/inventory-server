@@ -45,6 +45,7 @@ productController.delete = async (req, res) => {
         if (item.quantity > 1) {
             // Decrement the quantity
             item.quantity -= 1;
+           item.total=Number(item.prize*item.quantity)
             await item.save(); // Save the updated document
             return res.status(200).json({ message: "Product quantity decremented successfully", item });
         } else {
