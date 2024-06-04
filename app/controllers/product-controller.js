@@ -10,13 +10,20 @@ productController.create = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
     try {
-        
+        const existing=await Product.findOne({productId:req.body.productId})
         const body = req.body;
-      
+      if(existing){
+         existing.quantity+=1
+         await existing.save()
+         return
+      }
+       else{
         const product = await Product.create(body);
        product.userId=req.user.id
        await product.save()
         res.status(201).json(product);
+          return
+       }
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
