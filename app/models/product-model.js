@@ -5,7 +5,8 @@ const productSchema=new Schema({
     name:String,
     quantity:String,
     prize:String,
-    total:String
+    total:String,
+    userId:{type:String,ref:"user"}
 },{timestamps:true})
 const productModel=model("product",productSchema)
 module.exports=productModel
