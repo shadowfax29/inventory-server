@@ -12,7 +12,10 @@ productController.create = async (req, res) => {
     try {
         
         const body = req.body;
+      
         const product = await Product.create(body);
+       product.userId=req.user.id
+       await product.save()
         res.status(201).json(product);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -52,7 +55,7 @@ productController.delete = async (req, res) => {
 
 productController.show=async(req,res)=>{
     try{
-        const show=await Product.find()
+        const show=await Product.find({userId:req.user.id})
         res.json(show)
     }
     catch(err){
