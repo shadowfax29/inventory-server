@@ -15,7 +15,7 @@ const productController = require("./app/controllers/product-controller");
 
 const db=async()=>{
     try{
-        await mongoose.connect("const express = require("express");
+        await mongoose.connect("mongodb+srv://ravikumargowda2429:ravi12345@cluster0.npk340o.mongodb.net/inventory?retryWrites=true&w=majority&appName=Cluster0");
 const app = express();
 const cors = require("cors");
 app.use(cors());
